@@ -4,8 +4,8 @@ import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.BeanConfigurator;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.JavaBeanConfigurator;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public class BeanFactory {
 
@@ -30,21 +30,40 @@ public class BeanFactory {
             implementationClass = beanConfigurator.getImplementationClass(implementationClass);
         }
 
+        T bean = creatBean(implementationClass);
+        setInstanceToField(implementationClass, bean);
+
+        return bean;
+    }
+
+    public <T> T creatBean(Class<? extends T> implementationClass) {
+        T bean = null;
         try {
-            T bean = implementationClass.getDeclaredConstructor().newInstance();
 
-            for (Field field : implementationClass.getDeclaredFields()) {
-                if (field.isAnnotationPresent(Inject.class)) {
-                    field.setAccessible(true);
-                    field.set(bean, instance.getBean(field.getType()));
-                }
-            }
-            return bean;
+            bean = implementationClass.getDeclaredConstructor().newInstance();
 
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException reflectiveOperationException) {
+        } catch (InstantiationException |
+                IllegalAccessException |
+                InvocationTargetException |
+                NoSuchMethodException reflectiveOperationException) {
             reflectiveOperationException.printStackTrace();
         }
+        return bean;
+    }
 
-        return null;
+    public <T> void setInstanceToField(Class<? extends T> implementationClass, T bean) {
+        Arrays.stream(implementationClass.getDeclaredFields()).
+                filter(field -> field.isAnnotationPresent(Inject.class)).
+                forEach(field -> {
+                    field.setAccessible(true);
+
+                    try {
+
+                        field.set(bean, instance.getBean(field.getType()));
+
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 }
