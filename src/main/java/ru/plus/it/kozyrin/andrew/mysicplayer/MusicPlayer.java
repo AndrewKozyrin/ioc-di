@@ -4,7 +4,7 @@ import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.PlayList;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.Volume;
 
-public class PlayMusic implements Player {
+public class MusicPlayer implements Player {
 
     @Inject
     private PlayList loadPlayList;
