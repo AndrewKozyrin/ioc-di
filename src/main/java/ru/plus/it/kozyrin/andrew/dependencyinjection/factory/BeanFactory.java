@@ -1,6 +1,6 @@
 package ru.plus.it.kozyrin.andrew.dependencyinjection.factory;
 
-import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Inject;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.BeanConfigurator;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.JavaBeanConfigurator;
 

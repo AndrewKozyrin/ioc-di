@@ -1,6 +1,7 @@
 package ru.plus.it.kozyrin.andrew.mysicplayer.service.implementation;
 
-import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Inject;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Qualifier;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.MusicStyle;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.PlayList;
 

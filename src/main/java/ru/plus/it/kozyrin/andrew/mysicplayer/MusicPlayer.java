@@ -1,6 +1,6 @@
 package ru.plus.it.kozyrin.andrew.mysicplayer;
 
-import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Inject;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.PlayList;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.Volume;
 
