@@ -1,12 +1,15 @@
 package ru.plus.it.kozyrin.andrew.mysicplayer;
 
 import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Inject;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.annotations.Tests;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.PlayList;
 import ru.plus.it.kozyrin.andrew.mysicplayer.service.Volume;
+import ru.plus.it.kozyrin.andrew.mysicplayer.service.implementation.CyberPunkMusicStyle;
 
 public class MusicPlayer implements Player {
 
     @Inject
+    @Tests(className = CyberPunkMusicStyle.class)
     private PlayList loadPlayList;
     @Inject
     private Volume volume;
