@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 public class CyberPunkMusicStyle implements MusicStyle {
 
     @Override
-    @Qualifier(qualifierClass = "CyberPunkMusicStyle")
     public Stream<String> fillSongs() {
         return Stream.of("Nero - Satisfy",
                 "Scandroid - Neo-Tokyo (Dance With The Dead Remix)",
