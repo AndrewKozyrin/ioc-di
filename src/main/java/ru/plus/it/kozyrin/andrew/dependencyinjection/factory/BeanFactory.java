@@ -53,8 +53,6 @@ public class BeanFactory {
                     field.setAccessible(true);
 
                     try {
-                        System.out.println(bean);
-                        System.out.println(applicationContext.getBean(field.getType()));
                         field.set(bean, applicationContext.getBean(field.getType()));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
