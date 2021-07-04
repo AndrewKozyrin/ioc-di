@@ -3,24 +3,19 @@ package ru.plus.it.kozyrin.andrew.dependencyinjection.factory;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.anotations.Inject;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.BeanConfigurator;
 import ru.plus.it.kozyrin.andrew.dependencyinjection.beanconfigurator.JavaBeanConfigurator;
+import ru.plus.it.kozyrin.andrew.dependencyinjection.context.ApplicationContext;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 public class BeanFactory {
 
-    private static BeanFactory instance;
     private final BeanConfigurator beanConfigurator;
+    private final ApplicationContext applicationContext;
 
-    public BeanFactory() {
+    public BeanFactory(ApplicationContext applicationContext) {
         beanConfigurator = new JavaBeanConfigurator();
-    }
-
-    public static synchronized BeanFactory getInstance() {
-        if (instance == null) {
-            instance = new BeanFactory();
-        }
-        return instance;
+        this.applicationContext = applicationContext;
     }
 
     public <T> T getBean(Class<T> initiateClass) {
@@ -58,9 +53,9 @@ public class BeanFactory {
                     field.setAccessible(true);
 
                     try {
-
-                        field.set(bean, instance.getBean(field.getType()));
-
+                        System.out.println(bean);
+                        System.out.println(applicationContext.getBean(field.getType()));
+                        field.set(bean, applicationContext.getBean(field.getType()));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
